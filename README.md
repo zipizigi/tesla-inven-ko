@@ -11,11 +11,11 @@ Tesla 인벤토리 결제 정보를 자동으로 입력하고, 필요시 자동�
 Tampermonkey를 통해 UserScript를 실행합니다. 브라우저에 해당 확장프로그램이 설치되어 있어야합니다.  
 크롬으로 테스트하였으나, Edge 외에도 다른 브라우저도 가능할 수 있습니다.  
 
-https://www.tampermonkey.net/  
-https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo  
+[https://www.tampermonkey.net/](https://www.tampermonkey.net/)  
+[https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)  
 
 설치된 확장프로그램에서 대시보드 -> 도구로 이동합니다.   
-(또는 chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#nav=utils 으로 이동)  
+(또는 [chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#nav=utils](chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#nav=utils) 으로 이동)  
 
 하단의 import From URL에 아래 주소를 입력하고 설치를 누릅니다.  
 `https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-card-autoinput.js`  
