@@ -1,6 +1,10 @@
 // ==UserScript==
 // @name         Tesla Inv. Auto input
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/zipizigi/tesla-inven-ko
+// @homepageURL  https://github.com/zipizigi/tesla-inven-ko
+// @supportURL   https://github.com/zipizigi/tesla-inven-ko/issues
+// @updateURL    https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-card-autoinput.js
+// @downloadURL  https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-card-autoinput.js
 // @version      2025-01-23-001
 // @description  Tesla 인벤 카드 정보 자동 입력
 // @author       You
