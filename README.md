@@ -15,7 +15,7 @@ Tampermonkey를 통해 UserScript를 실행합니다. 브라우저에 해당 확
 [https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)  
 
 설치된 확장프로그램에서 대시보드 -> 도구로 이동합니다.   
-(또는 [chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#nav=utils](chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#nav=utils) 으로 이동)  
+(또는 `chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#nav=utils` 으로 이동)  
 
 하단의 import From URL에 아래 주소를 입력하고 설치를 누릅니다.  
 `https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-card-autoinput.js`  
@@ -75,4 +75,4 @@ settings 부분에 주문 정보가 있습니다. 본인의 카드정보와 주�
 중간의 링크를 리퍼럴 코드가 적용되어 있습니다. 지인의 리퍼럴 코드를 이용하셔도 됩니다.  
 
 해당 스크립트는 Model S로 테스트하였습니다.  
-동작에 문제가 있다면 https://github.com/zipizigi/tesla-inven-ko/issues 에 이슈를 등록해주세요.  
+동작에 문제가 있다면 [https://github.com/zipizigi/tesla-inven-ko/issues](https://github.com/zipizigi/tesla-inven-ko/issues) 에 이슈를 등록해주세요.  
