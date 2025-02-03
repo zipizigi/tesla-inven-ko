@@ -18,7 +18,7 @@
     'use strict';
 
     const settings = {
-        referral: 'hongseok93745', // 리퍼럴코드 적용
+        referral: 'hongseok93745', // 리퍼럴코드 적용. 공백일경우 처리하지 않음.
         name: '홍길동', // 한글 성/이름
         firstName: 'KilDong', // 영문 이름
         lastName: 'Hong', // 영문 성
@@ -64,7 +64,7 @@
         await typing('[name="password"]', settings.cardPw)
     } else {
         const queryString = new URLSearchParams(location.search);
-        if(queryString.get('referral') !== settings.referral){
+        if(settings.referral != '' && queryString.get('referral') !== settings.referral){
             queryString.set('referral', settings.referral);
             location.search = '?' + queryString.toString()
         }
