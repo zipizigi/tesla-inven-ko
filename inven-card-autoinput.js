@@ -50,9 +50,7 @@
         await typing('[name="/creditCardNumber"]', settings.cardNumber)
         await select('[name="/creditCardExpiryMonth"]', settings.cardMonth)
         await select('[name="/creditCardExpiryYear"]', settings.cardYear)
-        /*
-
-  */
+        
         await typing('[name="/billingAddress1"]', settings.addr1)
         await typing('[name="/billingAddress2"]', settings.addr2)
         await typing('[name="/billingCity"]', settings.city)
@@ -74,6 +72,8 @@
 
 
         await waitForElement('#LOCAL_NAME')
+        scroollToElement('#LOCAL_NAME')
+
 
         await typing('#LOCAL_NAME', settings.name)
         await typing('#FIRST_NAME', settings.firstName)
@@ -82,12 +82,14 @@
         await typing('#EMAIL_CONFIRM', settings.email)
         await typing('#PHONE_NUMBER', settings.phone)
 
+        scroollToElement('.legal-disclaimer input[type="checkbox"]')
         document.querySelectorAll('.legal-disclaimer input[type="checkbox"]').forEach(i=>i.click())
+
         await waitForElement('.payment-order-button:not([disabled]')
 
-        await sleep(200)
 
-        document.querySelector(".payment-order-button").scrollIntoView({ behavior: "smooth", block: "top" });
+        await sleep(200)
+        scroollToElement('.payment-order-button')
 
         if(settings.autoOrder){
             document.querySelector(".payment-order-button").click()
@@ -95,6 +97,9 @@
     }
 
 
+    function scroollToElement(selector) {
+        document.querySelector(selector).scrollIntoView({ behavior: "instant", block: "end" });
+    }
 
     async function sleep(ms){
         return new Promise((r) => setTimeout(r, ms));
@@ -112,12 +117,12 @@
                 }
             }
 
-            await new Promise((resolve) => setTimeout(resolve, 100));
+            await sleep(25)
         }
 
         console.log('wait fail ' + selector)
     }
-    async function typing(inputSelector, text, typingSpeed = 10) {
+    async function typing(inputSelector, text, typingSpeed = 5) {
         const input = document.querySelector(inputSelector);
         if (!input) {
             throw new Error("Input element not found!");
