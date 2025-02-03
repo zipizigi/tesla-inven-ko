@@ -1,10 +1,15 @@
-# Tesla 인벤토리 카드 자동입력 & 자동결제 스크립트/매크로
+# Tesla 인벤토리 자동 새로고침 & 카드 자동입력 & 자동결제 스크립트/매크로
+Tesla 인벤토리를 자동으로 새로고침하고, 필요시 결제 화면으로 이동합니다.  
+결제 정보를 자동으로 입력하고, 필요시 자동결제를 시도합니다.
 
-Tesla 인벤토리 결제 정보를 자동으로 입력하고, 필요시 자동결제를 시도합니다.
-## 예시화면
+## 자동 입력 예시화면
 <p align="center">
  <img src="https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/example.gif"/>
 </p>
+
+## 자동 새로고침 
+인벤토리를 매시 56분부터 특정 시간 간격으로 정보를 불러오며, 인벤토리에 차량이 있을 경우 해당 차량 결제화면으로 이동합니다.  
+카드 자동입력과 자동결제로 결제할 수 있습니다.  
 
 ## 설치하기
 ### 확장프로그램 설치
@@ -18,7 +23,8 @@ Tampermonkey를 통해 UserScript를 실행합니다. 브라우저에 해당 확
 (또는 `chrome-extension://dhdgffkkebhmkfjojejmpbldmpobfkfo/options.html#nav=utils` 으로 이동)  
 
 하단의 import From URL에 아래 주소를 입력하고 설치를 누릅니다.  
-`https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-card-autoinput.js`  
+`https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-autorefresh.js`  자동 새로고침  
+`https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-card-autoinput.js`  카드 자동 입력  
 
 ### 카드 정보 수정  
 설치된 유저 스크립트 탭에, 방금 추가한 유저스크립트가 있습니다.  Tesla 인벤 관련된 유저 스크립트로 들어갑니다.  
@@ -55,6 +61,10 @@ settings 부분에 주문 정보가 있습니다. 본인의 카드정보와 주�
 공백일경우 리퍼럴이 적용되어있거나, 적용되지 않았어도 다음 단계를 진행합니다.  
 
 ### 테스트하기  
+#### 자동 새로고침 테스트
+매시 56분부터 동작합니다. 해당 시간에 브라우저 F12를 눌러 개발자 도구를 연뒤, 콘솔 탭에서 `인벤토리 확인중...` 이라는 메시지가 나오는지 확인합니다.  
+
+#### 카드 정보 입력 테스트
 [인벤토리 바로가기](https://bit.ly/tesla-inven) 에서 인벤토리에 있는 아무 차량을 선택합니다.  
 다른 모델도 상관 없습니다.  
 
@@ -65,9 +75,20 @@ settings 부분에 주문 정보가 있습니다. 본인의 카드정보와 주�
 `autoOrder`을 true로 변경하면 자동주문을 시도합니다.  
 
 ## 사용방법 
-인벤토리 페이지를 계속 새로고침하다가, 원하는 옵션이 나오면 바로 해당 차량을 선택합니다.  
-이제 유저스크립트로 카드정보가 자동으로 채워집니다.  
+인벤토리 창을 뛰웁니다. (https://www.tesla.com/ko_KR/inventory/new/my)  
+유저스크립트가 자동으로 정보를 확인하고, 모델이 나오면 첫번째 차량 결제 페이지로 이동합니다.  
+
+수동으로 할 경우, 새로고침을 직접 하면서 원하는 차량 결제페이지로 이동합니다.  
+
+유저스크립트로 카드정보가 자동으로 채워집니다.  
 주문하기를 직접 누르거나 자동주문을 이용하여 빠르게 주문하세요.  
+
+## 스크립트 활성화/비활성화 방법
+<p align="center">
+ <img src="https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/check-enabled.png"/>
+</p>
+인벤토리와 결제화면에서 확장프로그램(tampermonkey)를 눌렀을 때 tesla 관련 스크립트가 확인되야합니다.  
+여기서 활성화, 비활성화를 할 수 있습니다.  
 
 # 주의사항
 해당 코드는 모두 공개되어 있으며, 외부로 어떠한 정보도 내보내지 않습니다.    

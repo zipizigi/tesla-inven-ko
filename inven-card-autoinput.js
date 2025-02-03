@@ -102,7 +102,8 @@
         scroollToElement('.payment-order-button')
 
         if(settings.autoOrder){
-            document.querySelector(".payment-order-button").click()
+            document.querySelector(".payment-order-button").click();
+            autoOrderRetry()
         }
     }
 
@@ -171,28 +172,14 @@
         const event = new Event("change", { bubbles: true });
         select.dispatchEvent(event);
     }
-    async function check(checkSelector, checked = true) {
-        const checkbox = document.querySelectorAll(check);
-        if (!checkbox) {
-            throw new Error("Checkbox element not found!");
-        }
 
-
-        const nativeCheckedSetter = Object.getOwnPropertyDescriptor(
-            window.HTMLInputElement.prototype,
-            "checked"
-        ).set;
-        for(const elm of checkbox){
-            nativeCheckedSetter.call(elm, checked);
-
-            // React의 `onChange` 이벤트 트리거
-            const event = new Event("change", { bubbles: true });
-            checkbox.dispatchEvent(event);
-            await sleep(50)
-        }
-
-
-
+    function autoOrderRetry(){
+        console.log('매시 57분 ~ 59분에 자동 주문을 시도합니다.');
+        setInterval(()=>{
+            if(new Date().getMinutes() >= 56){
+                console.log('자동 주문 시도... ' + new Date().toLocaleTimeString());
+                document.querySelector(".payment-order-button").click();
+            }
+        }, 2000);        
     }
-
 })();
