@@ -63,6 +63,9 @@
         await typing('[name="birthday"]', settings.cardBrith)
         await typing('[name="password"]', settings.cardPw)
     } else {
+        if(location.hash == '#overview'){
+            location.hash = '#payment'
+        }
         const queryString = new URLSearchParams(location.search);
         if(settings.referral != '' && queryString.get('referral') !== settings.referral){
             queryString.set('referral', settings.referral);
