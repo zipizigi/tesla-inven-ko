@@ -8,7 +8,7 @@
 // @version      2025-01-23-001
 // @description  Tesla 인벤 카드 정보 자동 입력
 // @author       You
-// @match        https://www.tesla.com/ko_KR/ms/order/*
+// @match        https://www.tesla.com/ko_KR/*/order/*
 // @match        https://static-assets-pay.tesla.com/v5/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=tesla.com
 // @grant        none
