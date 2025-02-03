@@ -18,6 +18,7 @@
     'use strict';
 
     const settings = {
+        referral: 'hongseok93745', // 리퍼럴코드 적용
         name: '홍길동', // 한글 성/이름
         firstName: 'KilDong', // 영문 이름
         lastName: 'Hong', // 영문 성
@@ -50,7 +51,7 @@
         await typing('[name="/creditCardNumber"]', settings.cardNumber)
         await select('[name="/creditCardExpiryMonth"]', settings.cardMonth)
         await select('[name="/creditCardExpiryYear"]', settings.cardYear)
-        
+
         await typing('[name="/billingAddress1"]', settings.addr1)
         await typing('[name="/billingAddress2"]', settings.addr2)
         await typing('[name="/billingCity"]', settings.city)
@@ -62,6 +63,12 @@
         await typing('[name="birthday"]', settings.cardBrith)
         await typing('[name="password"]', settings.cardPw)
     } else {
+        const queryString = new URLSearchParams(location.search);
+        if(queryString.get('referral') !== settings.referral){
+            queryString.set('referral', settings.referral);
+            location.search = '?' + queryString.toString()
+        }
+
         await waitForElement('.modal-container--referral-modal button', 1000)
         const refModal = document.querySelector('.modal-container--referral-modal button')
         if(refModal){
