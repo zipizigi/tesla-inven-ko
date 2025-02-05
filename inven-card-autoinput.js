@@ -9,6 +9,9 @@
 // @description  Tesla 인벤 카드 정보 자동 입력
 // @author       You
 // @match        https://www.tesla.com/ko_KR/*/order/*
+// @match        https://www.tesla.com/ko_kr/*/order/*
+// @match        https://www.tesla.com/ko_KR/*/design*
+// @match        https://www.tesla.com/ko_kr/*/design*
 // @match        https://static-assets-pay.tesla.com/v5/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=tesla.com
 // @grant        none
@@ -63,9 +66,23 @@
         await typing('[name="birthday"]', settings.cardBrith)
         await typing('[name="password"]', settings.cardPw)
     } else {
-        if(location.hash == '#overview'){
+        if(location.hash == '#payment'){
+            await fillInfo();
+        } else {
+            window.addEventListener('hashchange', function() {
+                if(location.hash == '#payment'){
+                    fillInfo();
+                }
+            });
+        }
+        if(location.hash == '#overview' && location.href.indexOf('design') < 0){
             location.hash = '#payment'
         }
+
+
+    }
+
+    async function fillInfo(){
         const queryString = new URLSearchParams(location.search);
         if(settings.referral != '' && queryString.get('referral') !== settings.referral){
             queryString.set('referral', settings.referral);
@@ -106,7 +123,6 @@
             autoOrderRetry()
         }
     }
-
 
     function scroollToElement(selector) {
         document.querySelector(selector).scrollIntoView({ behavior: "instant", block: "end" });
@@ -180,6 +196,6 @@
                 console.log('자동 주문 시도... ' + new Date().toLocaleTimeString());
                 document.querySelector(".payment-order-button").click();
             }
-        }, 2000);        
+        }, 2000);
     }
 })();
