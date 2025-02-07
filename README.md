@@ -26,6 +26,11 @@ Tampermonkey를 통해 UserScript를 실행합니다. 브라우저에 해당 확
 `https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-autorefresh.js`  자동 새로고침  
 `https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-card-autoinput.js`  카드 자동 입력  
 
+#### 확장프로그램 개발자 모드 켜기 
+https://www.tampermonkey.net/faq.php?ext=dhdg&version=5.3.3#Q209  
+개발자 모드를 켜지 않으면, 동작을 하지 않습니다.  
+확장 프로그램 관리(브라우저에서 chrome://extensions 또는 edge://extensions)으로 이동 후, 우측 상단의 개발자 모드 활성화  
+
 ### 카드 정보 수정  
 설치된 유저 스크립트 탭에, 방금 추가한 유저스크립트가 있습니다.  Tesla 인벤 관련된 유저 스크립트로 들어갑니다.  
 settings 부분에 주문 정보가 있습니다. 본인의 카드정보와 주소를 입력합니다.  
