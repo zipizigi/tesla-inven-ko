@@ -13,6 +13,12 @@
 // @grant        none
 // ==/UserScript==
 
+/**
+Changelog.
+- 페이지 이동 안하는 문제 수정.
+
+**/
+
 (function() {
     'use strict';
 
@@ -32,6 +38,7 @@
 
 
     function autoCheckInven(){
+        console.log('인벤토리 확인중...');
         checkInven();
         setInterval(()=>{
             if(new Date().getMinutes() >= 56){
@@ -40,19 +47,19 @@
         }, 5000);
     }
     function checkInven(){
-        console.log('인벤토리 확인중...');
         const query = {"query":{"model":settings.model,"condition":"new","options":{},"arrangeby":"Relevance","order":"desc","market":"KR","language":"ko","super_region":"north america","lng":"","lat":"","zip":"","range":0},"offset":0,"count":24,"outsideOffset":0,"outsideSearch":false,"isFalconDeliverySelectionEnabled":false,"version":0}
         const url = 'https://www.tesla.com/inventory/api/v4/inventory-results?query=' + encodeURIComponent(JSON.stringify(query))
 
         fetch(url)
-            .then(response => {
-            const json = response.json()
-            if(json.total_matches_found >= 0){
+            .then(response => response.json())
+            .then(json => {
+            if(json.total_matches_found > 0){
                 const vin = json.results[0].VIN;
                 location.href = `https://www.tesla.com/ko_KR/${settings.model}/order/${vin}?referral=${settings.referral}&titleStatus=new&redirect=no#payment`;
             }
         })
     }
+
 })();
 
 
