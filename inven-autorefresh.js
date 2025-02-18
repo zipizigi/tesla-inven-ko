@@ -5,7 +5,7 @@
 // @supportURL   https://github.com/zipizigi/tesla-inven-ko/issues
 // @updateURL    https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-autorefresh.js
 // @downloadURL  https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-autorefresh.js
-// @version      2025-02-03
+// @version      2025-02-18-01
 // @description  Tesla 인벤 자동 새로고침
 // @author       You
 // @match        https://www.tesla.com/ko_KR/inventory/new/*
@@ -16,6 +16,7 @@
 /**
 Changelog.
 - 페이지 이동 안하는 문제 수정.
+- 옵션을 선택할 수 있는 기능 추가
 
 **/
 
@@ -27,6 +28,9 @@ Changelog.
     const settings = {
         referral: 'hongseok93745',
         model: 'my', // ms, mx, my, m3
+        wheel: '', // EIGHTEEN, NINETEEN, TWENTY, TWENTY_ONE
+        paint: '', // WHITE, BLACK, BLUE, SILVER, RED
+        interior: '', //BLACK, WHITE
     }
 
 
@@ -38,10 +42,9 @@ Changelog.
 
 
     function autoCheckInven(){
-        console.log('인벤토리 확인중...');
         checkInven();
         setInterval(()=>{
-            if(new Date().getMinutes() >= 56){
+            if(new Date().getMinutes() >= 35){
                 checkInven()
             }
         }, 5000);
@@ -54,8 +57,15 @@ Changelog.
             .then(response => response.json())
             .then(json => {
             if(json.total_matches_found > 0){
-                const vin = json.results[0].VIN;
-                location.href = `https://www.tesla.com/ko_KR/${settings.model}/order/${vin}?referral=${settings.referral}&titleStatus=new&redirect=no#payment`;
+                const result = json.results
+                .filter(f=>settings.interior == '' || f.INTERIOR[0].indexOf(settings.interior) >= 0)
+                .filter(f=>settings.wheel == '' || f.WHEELS[0] == settings.wheel)
+                .filter(f=>settings.paint == '' || f.PAINT[0].indexOf(settings.paint) >= 0)
+
+                if(result.length > 0){
+                    const vin = result[0].VIN;
+                    location.href = `https://www.tesla.com/ko_KR/${settings.model}/order/${vin}?referral=${settings.referral}&titleStatus=new&redirect=no#payment`;
+                }
             }
         })
     }

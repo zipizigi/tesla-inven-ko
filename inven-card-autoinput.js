@@ -5,7 +5,7 @@
 // @supportURL   https://github.com/zipizigi/tesla-inven-ko/issues
 // @updateURL    https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-card-autoinput.js
 // @downloadURL  https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-card-autoinput.js
-// @version      2025-01-23-001
+// @version      2025-02-18-001
 // @description  Tesla 인벤 카드 정보 자동 입력
 // @author       You
 // @match        https://www.tesla.com/ko_KR/*/order/*
