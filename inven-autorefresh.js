@@ -5,7 +5,7 @@
 // @supportURL   https://github.com/zipizigi/tesla-inven-ko/issues
 // @updateURL    https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-autorefresh.js
 // @downloadURL  https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-autorefresh.js
-// @version      2025-02-18-01
+// @version      2025-02-19-01
 // @description  Tesla 인벤 자동 새로고침
 // @author       You
 // @match        https://www.tesla.com/ko_KR/inventory/new/*
@@ -50,6 +50,7 @@ Changelog.
         }, 5000);
     }
     function checkInven(){
+        console.log(`inven check... ${new Date()}`)
         const query = {"query":{"model":settings.model,"condition":"new","options":{},"arrangeby":"Relevance","order":"desc","market":"KR","language":"ko","super_region":"north america","lng":"","lat":"","zip":"","range":0},"offset":0,"count":24,"outsideOffset":0,"outsideSearch":false,"isFalconDeliverySelectionEnabled":false,"version":0}
         const url = 'https://www.tesla.com/inventory/api/v4/inventory-results?query=' + encodeURIComponent(JSON.stringify(query))
 
