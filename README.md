@@ -65,6 +65,22 @@ settings 부분에 주문 정보가 있습니다. 본인의 카드정보와 주�
 `referral`에 리퍼럴 적용을 위한 코드를 넣어두세요. 실수로 누락할 경우 자동으로 입력해줍니다.  
 공백일경우 리퍼럴이 적용되어있거나, 적용되지 않았어도 다음 단계를 진행합니다.  
 
+### 원하는 차량 옵션만 선택하기
+auto refresh 스크립트의 설정 부분을 수정합니다.  
+```js
+
+    const settings = {
+        referral: 'REFERRAL',
+        model: 'my', // ms, mx, my, m3
+        wheel: '', // EIGHTEEN, NINETEEN, TWENTY, TWENTY_ONE
+        paint: '', // WHITE, BLACK, BLUE, SILVER, RED
+        interior: '', //BLACK, WHITE
+    }
+```
+Model Y/3에서는 대부분 가능하지만, S/X의 색상이나 휠 사이즈가 다를수 있습니다.  
+공백 `''`으로 둘 경우 해당 옵션을 선택하지 않습니다.  
+예로들어 wheel만 `NINETEEN`으로 하고 다른 옵션은 `''`으로 둘 경우 19인치중 아무 옵션 차량을 선택합니다.  
+
 ### 테스트하기  
 #### 자동 새로고침 테스트
 매시 56분부터 동작합니다. 해당 시간에 브라우저 F12를 눌러 개발자 도구를 연뒤, 콘솔 탭에서 `인벤토리 확인중...` 이라는 메시지가 나오는지 확인합니다.  
