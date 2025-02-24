@@ -5,7 +5,7 @@
 // @supportURL   https://github.com/zipizigi/tesla-inven-ko/issues
 // @updateURL    https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-autorefresh.js
 // @downloadURL  https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-autorefresh.js
-// @version      2025-02-19-01
+// @version      2025-02-24-01
 // @description  Tesla 인벤 자동 새로고침
 // @author       You
 // @match        https://www.tesla.com/ko_KR/inventory/new/*
@@ -17,7 +17,7 @@
 Changelog.
 - 페이지 이동 안하는 문제 수정.
 - 옵션을 선택할 수 있는 기능 추가
-
+- 색상을 여러개 지정할 수 있도록 추가.
 **/
 
 (function() {
@@ -29,7 +29,7 @@ Changelog.
         referral: 'hongseok93745',
         model: 'my', // ms, mx, my, m3
         wheel: '', // EIGHTEEN, NINETEEN, TWENTY, TWENTY_ONE
-        paint: '', // WHITE, BLACK, BLUE, SILVER, RED
+        paint: [], // [] 모든색, ['WHITE'] 흰색만, ['BLACK', 'BLUE'] 검정 또는 블루, ['GREY', 'GRAY'], BLUE, SILVER, RED
         interior: '', //BLACK, WHITE
     }
 
@@ -61,7 +61,8 @@ Changelog.
                 const result = json.results
                 .filter(f=>settings.interior == '' || f.INTERIOR[0].indexOf(settings.interior) >= 0)
                 .filter(f=>settings.wheel == '' || f.WHEELS[0] == settings.wheel)
-                .filter(f=>settings.paint == '' || f.PAINT[0].indexOf(settings.paint) >= 0)
+                .filter(f=>settings.paint.length == 0 || settings.paint.some(color => f.PAINT[0].indexOf(color) >= 0)); 
+
 
                 if(result.length > 0){
                     const vin = result[0].VIN;
