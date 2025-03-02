@@ -5,7 +5,7 @@
 // @supportURL   https://github.com/zipizigi/tesla-inven-ko/issues
 // @updateURL    https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-card-autoinput.js
 // @downloadURL  https://raw.githubusercontent.com/zipizigi/tesla-inven-ko/refs/heads/main/inven-card-autoinput.js
-// @version      2025-02-18-001
+// @version      2025-03-02-001
 // @description  Tesla 인벤 카드 정보 자동 입력
 // @author       You
 // @match        https://www.tesla.com/ko_KR/*/order/*
@@ -16,6 +16,11 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=tesla.com
 // @grant        none
 // ==/UserScript==
+
+/**
+Changelog.
+- 주문 페이지 변경 대응
+**/
 
 (async function() {
     'use strict';
@@ -89,11 +94,28 @@
             location.search = '?' + queryString.toString()
         }
 
+        // close referral
         await waitForElement('.modal-container--referral-modal button', 1000)
         const refModal = document.querySelector('.modal-container--referral-modal button')
         if(refModal){
             refModal.click()
         }
+
+        // order button
+        await waitForElement('.summary-panel--aside-footer button.aside-footer--button', 500)
+        const orderButton = document.querySelector('.summary-panel--aside-footer button.aside-footer--button')
+        if(orderButton){
+            orderButton.click()
+        }
+
+        // continue to payment button
+        await waitForElement('button.continue-to-payment-btn', 500)
+        const continueToPaymentButton = document.querySelector('button.continue-to-payment-btn')
+        if(continueToPaymentButton){
+            continueToPaymentButton.click()
+        }
+
+
         await waitForElement('.btn-creditcard')
         document.querySelector('.btn-creditcard').click()
 
