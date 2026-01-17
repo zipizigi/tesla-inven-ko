@@ -9,6 +9,7 @@
 // @description  Tesla 인벤 자동 새로고침
 // @author       You
 // @match        https://www.tesla.com/ko_KR/inventory/new/*
+// @match        https://www.tesla.com/ko_KR/inventory/used/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=tesla.com
 // @grant        none
 // ==/UserScript==
@@ -31,6 +32,7 @@ Changelog.
         wheel: '', // EIGHTEEN, NINETEEN, TWENTY, TWENTY_ONE
         paint: [], // [] 모든색, ['WHITE'] 흰색만, ['BLACK', 'BLUE'] 검정 또는 블루, ['GREY', 'GRAY'], BLUE, SILVER, RED
         interior: '', //BLACK, WHITE
+        condition: 'used' // new, used
     }
 
 
@@ -51,7 +53,7 @@ Changelog.
     }
     function checkInven(){
         console.log(`inven check... ${new Date()}`)
-        const query = {"query":{"model":settings.model,"condition":"new","options":{},"arrangeby":"Relevance","order":"desc","market":"KR","language":"ko","super_region":"north america","lng":"","lat":"","zip":"","range":0},"offset":0,"count":24,"outsideOffset":0,"outsideSearch":false,"isFalconDeliverySelectionEnabled":false,"version":0}
+        const query = {"query":{"model":settings.model,"condition":settings.condition,"options":{},"arrangeby":"Relevance","order":"desc","market":"KR","language":"ko","super_region":"north america","lng":"","lat":"","zip":"","range":0},"offset":0,"count":24,"outsideOffset":0,"outsideSearch":false,"isFalconDeliverySelectionEnabled":false,"version":0}
         const url = 'https://www.tesla.com/inventory/api/v4/inventory-results?query=' + encodeURIComponent(JSON.stringify(query))
 
         fetch(url)
@@ -66,7 +68,7 @@ Changelog.
 
                 if(result.length > 0){
                     const vin = result[0].VIN;
-                    location.href = `https://www.tesla.com/ko_KR/${settings.model}/order/${vin}?referral=${settings.referral}&titleStatus=new&redirect=no#payment`;
+                    location.href = `https://www.tesla.com/ko_KR/${settings.model}/order/${vin}?referral=${settings.referral}&titleStatus=${settings.condition}&redirect=no#payment`;
                 }
             }
         })

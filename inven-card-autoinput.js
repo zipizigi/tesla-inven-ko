@@ -52,24 +52,28 @@ Changelog.
 
     if(location.href.indexOf('assets-pay.') > 0) {
         // card
-        await waitForElement('[name="/creditCardHolderName"]')
-        await typing('[name="/creditCardHolderName"]', settings.cardName)
-        await typing('[name="/creditCardNumber"]', settings.cardNumber)
+        await waitForElement('[name="/creditCardHolderName"]', 500)
+        if(document.querySelector('.modal-container--referral-modal button')){
+            await typing('[name="/creditCardHolderName"]', settings.cardName)
+            await typing('[name="/creditCardNumber"]', settings.cardNumber)
 
-        await typing('[name="/creditCardNumber"]', settings.cardNumber)
-        await select('[name="/creditCardExpiryMonth"]', settings.cardMonth)
-        await select('[name="/creditCardExpiryYear"]', settings.cardYear)
+            await typing('[name="/creditCardNumber"]', settings.cardNumber)
+            await select('[name="/creditCardExpiryMonth"]', settings.cardMonth)
+            await select('[name="/creditCardExpiryYear"]', settings.cardYear)
+        }
+
 
         await typing('[name="/billingAddress1"]', settings.addr1)
         await typing('[name="/billingAddress2"]', settings.addr2)
         await typing('[name="/billingCity"]', settings.city)
         await typing('[name="/billingZipCode"]', settings.zipCode)
 
-        document.querySelectorAll('.tds-form-input input[type="checkbox"]').forEach(i=>i.click())
+        // document.querySelectorAll('.tds-form-input input[type="checkbox"]').forEach(i=>i.click())
 
-        await waitForElement('[name="birthday"]')
-        await typing('[name="birthday"]', settings.cardBrith)
-        await typing('[name="password"]', settings.cardPw)
+
+        // await waitForElement('[name="birthday"]')
+        // await typing('[name="birthday"]', settings.cardBrith)
+        // await typing('[name="password"]', settings.cardPw)
     } else {
         if(location.hash == '#payment'){
             await fillInfo();
@@ -116,8 +120,8 @@ Changelog.
         }
 
 
-        await waitForElement('.btn-creditcard')
-        document.querySelector('.btn-creditcard').click()
+        await waitForElement('.btn-kcppay')
+        document.querySelector('.btn-kcppay').click()
 
 
         await waitForElement('#LOCAL_NAME')
@@ -131,8 +135,12 @@ Changelog.
         await typing('#EMAIL_CONFIRM', settings.email)
         await typing('#PHONE_NUMBER', settings.phone)
 
+        // check all terms.
         scroollToElement('.legal-disclaimer input[type="checkbox"]')
-        document.querySelectorAll('.legal-disclaimer input[type="checkbox"]').forEach(i=>i.click())
+
+        // document.querySelectorAll('.legal-disclaimer input[type="checkbox"]').forEach(i=>i.click())
+        await waitForElement('#SELECT_ALL_CONSENT', 1500)
+        document.querySelector('#SELECT_ALL_CONSENT').click()
 
         await waitForElement('.payment-order-button:not([disabled]')
 
